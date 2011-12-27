@@ -1,0 +1,25 @@
+<div id="leftbox">
+<br /><br />
+<table class="formstyle formbg" width="50%" >
+	<tr>
+		<th width="45%">Lawyer</th>
+  		<td><%=@lawyer_account.user.name %></td>
+	</tr>
+	<tr>
+		<th>Opening balance</th>
+		<td>Rs.<%=h @lawyer_account.opening_balance %></td>
+	</tr>
+	<tr>
+		<th>Current balance</th>
+  		<td>Rs.<%=h @lawyer_account.current_balance %></td>
+	</tr>
+</table>
+</div>
+<div class="sidebar">
+<br /><br />
+<ul>
+	<li class="edit"><%= link_to 'Edit', edit_lawyer_account_path(@lawyer_account) %> </li>
+	<li class="edit"><%= link_to 'Back', lawyer_accounts_path %></li>
+</ul>
+</div>
+

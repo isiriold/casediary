@@ -1,0 +1,63 @@
+<div id="left_box">
+	<% form_for(@case) do |f| %>
+  	<%= f.error_messages %>
+ 	<table class="formstyle" width="100%">
+  		<tr>
+    			<th><%= f.label :lawyer_id %></th>
+    			<td><%= f.select :user_id,firm_lawyers(current_user),:include_blank=>true%></td>
+  		</tr>
+                <tr>
+                	<th><%= f.label :case_type %></th>
+                	<td><%= f.select :case_type,$case_types,:include_blank=>true%></td>
+        	</tr>
+ 		<tr>
+    			<th><%= f.label :file_number %></th>
+    			<td><%= f.text_field :file_number %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :case_number %></th>
+    			<td><%= f.text_field :case_number %></td>
+  		</tr>
+
+  		<tr>
+    			<th><%= f.label :last_date_for_submission %></th>
+    			<td><input class="case[last_date_for_submission]" id="cal" name = "case[last_date_for_submission]" value=""/></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :facts_of_the_case %></th>
+    			<td><%= f.text_area :facts_of_the_case ,:rows=>5,:cols=>30 %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :opponent_details %></th>
+    			<td><%= f.text_area :opponent_details ,:rows=>5,:cols=>30 %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :our_client %></th>
+    			<td><%= f.select :our_client,$our_client,:include_blank=>true%></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :judgement_summary %></th>
+    			<td><%= f.text_area :judgement_summary ,:rows=>5,:cols=>30 %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :citations %></th>
+    			<td><%= f.text_area :citations ,:rows=>5,:cols=>30 %></td>
+  		</tr>
+ 		<tr>
+    			<th><%= f.label :first_hearing_date %></th>
+    			<td><%= f.date_select :first_hearing_date %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :notes %></th>
+    			<td><%= f.text_area :notes ,:rows=>5,:cols=>30 %></td>
+  		</tr>
+</table>
+<div class="button">
+          <center><%= f.submit 'Update' %></center>
+          <% end %>
+</div>
+
+<!--<%= link_to 'Show', @case %> |
+<%= link_to 'Back', cases_path %>-->
+</div>
+<div class="clear"></div>

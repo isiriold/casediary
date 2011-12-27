@@ -1,0 +1,34 @@
+<% form_for(@email) do |f| %>
+  <%= f.error_messages %>
+<div class="show">
+    <div class="show_heading">New email</div>
+    <p>
+    <%= f.label :from %> :
+    <%=current_user.name%>
+    <%= f.hidden_field :user_id,:value=>current_user.id%>
+     &nbsp;&nbsp;
+    
+    <%if params[:type].blank?%>
+            <%= f.hidden_field :client_id,:value=>params[:client_id]%>
+    <%else%>
+           <th>To:</th>
+           <td><%=f.select :client_id,firm_clients(current_user)%></td>
+    <%end%>
+  </p>
+</div>
+<div id="left_box">
+<table class="formstyle" width="100%">
+	<tr>
+    		<th><%= f.label :subject %></th>
+    		<td><%= f.text_field :subject %></td>
+	</tr>
+  	<tr>
+    		<th><%= f.label :content %></th>
+    		<td><%= f.text_area :content %></td>
+  	</tr>
+</table>
+<div class="button">
+    <center><%= f.submit 'Create' %></center>
+</div>
+<% end %>
+</div>

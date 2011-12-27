@@ -1,0 +1,25 @@
+<% form_for(@saved_letter) do |f| %>
+<%= f.error_messages %>
+<div id="left_box">
+	<table class="formstyle" width="95%">
+		
+    		<%= f.hidden_field :user_id %>
+  	
+  		<tr>
+    			<th><%= f.label :regarding %></th>
+    			<td><%= f.text_field :regarding %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :content %></th>
+    			<td><%= f.text_area :content %></td>
+  		</tr>
+  		
+	</table>
+
+	<div class="button">
+    		<center><%= f.submit 'Update' %></center>
+  	</div>
+
+</div>
+<% end %>
+

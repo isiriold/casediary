@@ -1,0 +1,26 @@
+<div id="left_box">
+<% form_for(@account) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle formbg" width="99%" cellpadding="5px"> 
+<%= f.hidden_field :user_id,:value=>current_user.id %>
+	<tr>
+    		<th><%= f.label :account_name %></th>
+    		<td><%= f.text_field :account_name %></td>
+  	</tr>
+	<tr>
+    		<th><%= f.label :account_type %></th>
+    		<td><%= f.select :account_type,@account_types,:include_blank=>true %></td>
+	</tr>
+	<tr>
+   		<th><%= f.label :opening_balance %></th>
+    		<td><%= f.text_field :opening_balance %></td>
+  	</tr>
+</table>
+    <%= f.hidden_field :current_balance,:value=>0%>
+<div class="button">
+	<center><%= f.submit 'Create' %></center>
+</div>
+<% end %>
+</div>
+
+

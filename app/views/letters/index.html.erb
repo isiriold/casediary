@@ -1,0 +1,33 @@
+
+<table class = 'tableheader' width="100%" cellpadding="3px">
+	<tr>
+		<td width="90%">Listing Letters</td>
+		<td class="new_btn"><%=link_to "Write a Letter",new_letter_path(:type=>"communication")%></td>
+	</tr>
+</table>
+
+<table class="listing">
+   <%unless @letters.blank?%>
+	<tr>
+    		<th class="first">Lawyer</th>
+    		<th>Client</th>
+    		<th>Regarding</th>
+    		<th class="last">Show</th>
+  	</tr>
+
+      <% @letters.each do |letter| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{letter.user.name}",user_path(letter.user)%></td>
+    		<td><%=link_to "#{find_client(letter.client_id)}",client_path(find_client(letter.client_id))%></td>
+    		<td><%=h letter.regarding %></td>
+    		<td class="last"><%=link_to '<img src="/images/view.gif" title="show"/>',letter%></td>
+  	</tr>
+      <% end %>
+        <tr><td><div id="pg"><%=will_paginate @letters%></div></td></tr>
+    <%else%>
+        <tr><td><center>No letter found</center></td></tr>
+    <%end%>
+</table>
+
+
+

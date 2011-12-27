@@ -1,0 +1,17 @@
+<div id ="left_box">
+<% form_for(@transaction) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle" width="99%" cellpadding="5px">
+	<tr>
+    		<th><%= f.label :amount %></th><td><%= f.text_field :amount %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :purpose %></th><td><%= f.text_field :purpose %></td>
+  	</tr>
+</table>
+<div class="button">
+    <center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+
+</div>

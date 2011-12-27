@@ -1,0 +1,26 @@
+<div id="left_box">
+<% form_for(@allocation) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle" width="100%">
+	<tr>
+    		<th><%= f.label :allocated_to %></th>
+    		<td><%= f.select :allocated_to,firm_lawyers(current_user) %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :amount %></th>
+    		<td><%= f.text_field :amount %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :date_of_allocation %></th>
+    		<td><input class="allocation[date_of_allocation]" id="cal" name = "allocation[date_of_allocation]" value=""/></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :purpose %></th>
+    		<td><%= f.text_area :purpose %></td>
+  	</tr>
+</table>
+<div class="button">
+	<center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+</div>

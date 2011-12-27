@@ -1,0 +1,48 @@
+<div id="left_box">
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+ 
+  <%= f.hidden_field :law_firm_id,:value=>current_user.law_firm.id%>
+<table class="formstyle" width="100%">
+  		<tr>
+          <th><%= f.label :name %></th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :address %></th>
+          <td><%= f.text_area :address,:rows=>5,:cols=>35 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :phone_number %></th>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :mobile_number %></th>
+          <td><%= f.text_field :mobile_number %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :email %></th>
+          <td><%= f.text_field :email %></td>
+        <tr>
+          <th><%= f.label :username %></th>
+          <td><%= f.text_field :username %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :password %></th>
+          <td><%= f.password_field :password %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :password_confirmation %></th>
+          <td><%= f.password_field :password_confirmation %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :select_role %></th>
+          <td><%=radio_button_tag ('role','Juniour Lawyer', checked = false,:value=>"Junior Lawyer")%>Junior Lawyer
+          &nbsp; &nbsp;<%=radio_button_tag ('role','Senior Lawyer', 'checked =false',:value=>"Senior Lawyer")%>Senior Lawyer</td>
+        </tr>
+</table>
+<div class="button">
+  <center><p><%= f.submit "Submit" %></p></center>
+</div>
+<% end %>
+</div>

@@ -1,0 +1,22 @@
+<div class="spacing">&nbsp;</div>
+<div class="Login">
+<% title "Login" %>
+
+<% form_for @user_session do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+
+<div class="login_btn">
+ <%= f.submit "Submit" %>  <%=link_to "Sign Up",new_law_firm_path%>
+</div>
+<% end %>
+</div>
+
+

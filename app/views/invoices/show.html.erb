@@ -1,0 +1,43 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left">	
+	<tr>
+		<th width="25%">Client</th>
+  		<td><%=find_client(@invoice.client_id)%></td>
+	</tr>
+	<tr>
+		<th>Account</th>
+  		<td><%=@invoice.account.account_name%></td>
+	</tr>
+</table>
+<table class="show_right">	
+	<tr>
+  		<th width="35%">Invoice number</th>
+  		<td><%=h @invoice.invoice_number %>
+	</tr>
+	<tr>
+  		<th>Invoice amount</th>
+  		<td>Rs.<%=h @invoice.invoice_amount %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+	<div class="show_heading">Towards</div>
+  	<p><%=h @invoice.towards %></p>
+</div>
+<div class="show">
+  	<div class="show_heading">Payment received</div>
+  	<p><%=display_payment_received(@invoice.payment_received)%></p>
+</div>
+
+</div>
+<div class="sidebar">
+<ul>	
+	<li><%= link_to 'Print Invoice', print_invoice_invoices_path(:id=>@invoice)%></li>
+	<%if @invoice.payment_received==true%>
+	<li><%= link_to 'Print Receipt', print_receipt_invoices_path(:id=>@invoice) %></li>
+	<%end%>
+	<li class="edit"><%= link_to 'Back', invoices_path %></li>
+</ul>
+</div>
+

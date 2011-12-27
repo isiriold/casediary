@@ -1,0 +1,41 @@
+<div id="left_box">
+<% form_for(@law_firm) do |f| %>
+  <%= f.error_messages %>
+	<table class="formstyle">
+  		<tr>
+    			<th><%= f.label :firm_name %></th>
+    			<td><%= f.text_field :firm_name %></td>
+		</tr>
+  		<tr>
+    			<th><%= f.label :address %></th>
+    			<td><%= f.text_area :address ,:rows=>5,:cols=>35%></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :contact_person %></th>
+    			<td><%= f.text_field :contact_person %></td>
+  		</tr>
+		<tr>
+ 			<th><%= f.label :phone_number %></th>
+    			<td><%= f.text_field :phone_number %></td>
+  		</tr>
+ 		<tr>
+    			<th><%= f.label :mobile %></th>
+    			<td><%= f.text_field :mobile %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :mail %></th>
+    			<td><%= f.text_field :mail %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :website %></th>
+    			<td><%= f.text_field :website %></td>
+  		</tr>
+	</table>
+	<div class="button">
+    		<center><%= f.submit 'Update' %></center>
+  	</div>
+	<% end %>
+	<!--<%= link_to 'Show', @law_firm %> |
+	<%= link_to 'Back', law_firms_path %>-->
+</div>
+<div class="clear"></div>

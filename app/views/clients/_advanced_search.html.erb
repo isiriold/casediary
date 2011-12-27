@@ -1,0 +1,59 @@
+<% form_remote_tag({ :url => clients_url,:method => :get}) do %>
+   <table class="search">
+      <%fields_for @search do |f| %>
+      	  <% f.fields_for @search.conditions do |client| %>
+      	      <tr>
+          		<th><%=label_tag 'Name:'%></th>
+          		<td class="new"><%= client.text_field :name_like%></td>
+          		<th><%=label_tag 'Address:'%></th> 
+          		<td class="new"><%= client.text_field :address%></td>
+       		</tr>
+       		<tr>   
+          		<th><%=label_tag 'Phone Number:'%></th>
+          		<td class="new"><%= client.text_field :phone_number%></td>
+          		<th><%=label_tag 'Mobile Number:'%></th>
+          		<td class="new"><%= client.text_field :mobile_number%></td>
+		</tr> 
+                <tr>   
+          		<th><%=label_tag 'Mail:'%></th>
+          		<td class="new"><%= client.text_field :mail%></td>
+          		<th><%=label_tag 'Father:'%></th>
+          		<td class="new"><%= client.text_field :father_like%></td>
+		</tr> 
+		<tr>   
+                    <%client.fields_for client.object.referer do |refer| %>
+          		<th><%=label_tag 'Referer:'%></th>
+          		<td class="new"><%= refer.text_field :name%></td>
+                    <%end%>
+          		<th><%=label_tag 'Client type:'%></th>
+          		<td class="new"><%= client.select :client_type,[['Individual','Individual'],['Corporate','Corporate']],:include_blank=>true%></td>
+		</tr>
+                <tr>   
+          		<th><%=label_tag 'DOB:'%></th>
+          		<td class="new"><%= client.text_field :dob,:id=>"cal"%></td>
+          		<th><%=label_tag 'Contact Person:'%></th>
+          		<td class="new"><%= client.text_field :contact_person_name_like%></td>
+		</tr>
+                <tr>   
+          		<th><%=label_tag 'Contact Person Designation:'%></th>
+          		<td class="new"><%= client.text_field :contact_person_designation_like%></td>
+          		<th><%=label_tag 'Contact Person Phone Number:'%></th>
+          		<td class="new"><%= client.text_field :contact_person_phone_number%></td>
+		</tr>
+                <tr>   
+          		<th><%=label_tag 'Authorized Person:'%></th>
+          		<td class="new"><%= client.text_field :authorized_person_name_like%></td>
+          		<th><%=label_tag 'Authorized Person Designation:'%></th>
+          		<td class="new"><%= client.text_field :authorized_person_designation_like%></td>
+		</tr>
+                <tr>   
+          		<th><%=label_tag 'Authorized Person Phone Number:'%></th>
+          		<td class="new"><%= client.text_field :authorized_person_phone_number%></td>
+                        <th></th>
+                        <td><%= submit_tag "Search" %>  
+              	            <input type="Reset" value="Reset"></td>
+		</tr>
+            <%end%>
+        <%end%>
+     </table>
+ <%end%>

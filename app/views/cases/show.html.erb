@@ -1,0 +1,107 @@
+<div id="leftbox">
+	<div class="show_heading">Case Details</div>
+	<table class="show_left">
+	<tr>
+     		<th width="30%">Lawyer </th><td><%=@case.user.name%></td>
+	</tr>
+	<tr>
+     		<th>Client </th><td><%= @case.client.name%></td>
+	</tr>
+	<tr>
+		<th>File Number </th><td><%=@case.file_number%></td>
+	</tr>
+	<tr>
+		<th><%=link_to "Hearings ",new_hearing_path(:case_id=>@case.id)%> </th><td><%=link_to "#{@case.hearings.count}",hearings_path%></span></td>
+    	</tr>
+	<tr>
+   	<%unless @case.status == "pending"%>
+    		<th>Case number </th><td><%=@case.case_number%></span></td>
+        </tr>
+   	<%end%>
+</table>
+
+<table class="show_right">
+        <%unless @case.status == "submitted"%>
+           <tr>
+   		<th width="38%">Last date for submission</th>
+		<td><%=change_format_to_long(@case.last_date_for_submission)%></td>
+   	
+  	  </tr>
+         <%end%>
+
+	<%if @case.status == "submitted"%>
+	  <%if Date.today > @case.last_date_for_submission%>
+    	     <tr>
+     		 <th>Date of filing</th>
+	 	 <td><%=change_format_to_long(@case.date_of_filing)%></td>
+   	     </tr>
+          <%end%>
+             <tr>
+    		<th>First hearing date</th>
+		<td><%=change_format_to_long(@case.first_hearing_date)%></td>
+  	      </tr>
+  	<%end%>
+
+	<tr>
+		<th>Our Client </th><td><%=link_to "#{@case.client.name}",client_path(@case.client)%>,(<%=@case.our_client%>)</td>
+	</tr>
+
+	<tr>
+ 		<th>Case Type</th><td><%=@case.case_type%></span></td>
+  	</tr>
+	<tr>
+    		<th>Status</th><td><%=h @case.status %></td>
+	</tr>
+</table>
+
+<div class="clear"></div>
+
+<div class="show">
+    <div class="show_heading">Judgement summary</div>
+    <p><%=h @case.judgement_summary %></p>
+</div>
+
+<div class="show">
+    <div class="show_heading">Facts of the case</div>
+    <p><%=@case.facts_of_the_case%></p>
+</div>
+
+<div class="show">
+    <div class="show_heading">Opponent details</div>
+    <p><%=h @case.opponent_details %></p>
+</div>
+
+<div class="show">
+ 	<div class="show_heading">Citations</div>
+	<p><%=h @case.citations %></p>
+</div>
+
+<div class="show">
+	<div class="show_heading">Notes</div>
+	<p><%=h @case.notes %></p>
+</div>
+
+<%=render :partial=>"/documents/new"%><br/>
+<%=render :partial=>"/documents/index"%>
+</div>
+
+<div class="sidebar">
+<ul>
+	<li><%= link_to "New Alert", new_alert_path(:case_id=>@case.id)%> </li>
+	<%if current_user.role == "Admin"%>
+        <%if @case.status=="pending"%> 
+        <li><%= link_to 'Submittted', edit_status_case_path(@case,:status=>"Submit"),:rel => 'facebox'%></li>
+        <li><%= link_to 'Dismissed', update_status_case_path(@case,:status=>"Dismiss")%></li>
+        <%end%> 
+        <%if @case.status == "submitted"%>
+        <li><%= link_to 'Judgement', edit_status_case_path(@case,:status=>"Judgement"),:rel=>'facebox'%></li>
+ 	<br />
+	<li class="edit"><%= link_to 'Edit', edit_case_path(@case) %> </li>
+	<li class="edit"><%= link_to 'Back', cases_path %> </li>
+</ul>
+<%end%>
+<%end%>
+</div>
+<div class="clear"></div>
+
+

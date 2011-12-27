@@ -1,0 +1,103 @@
+<div id="leftbox">
+	<div class="show_heading">Client Details</div>
+  	<table class="formstyle formbg" width="100%">
+  		<tr>
+      			<th width="20%">Name</th>
+      			<td><%=h @client.name %></td>
+  		</tr>
+  		<tr>
+    			<th>Address</th>
+    			<td><%=h @client.address %></td>
+  		</tr>
+  		<tr>
+    			<th>Phone number</th>
+    			<td><%=h @client.phone_number %></td>
+  		</tr>
+		<tr>
+    			<th>Mobile number</th>
+    			<td><%=h @client.mobile_number %></td>
+  		</tr>
+  		<tr>
+    			<th>Mail</th>
+    			<td><%=h @client.mail %></td>
+  		</tr>
+                <%unless @client.referer.blank?%>
+  		<tr>
+    			<th>Refereed By</th>
+    			<td><%=h @client.referer.name %></td>
+  		</tr>
+                <%end%>
+		<tr>
+    			<th>Cient type</th>
+    			<td><%=h @client.client_type%></td>
+  		</tr>
+  		<tr>
+    			<th>Father's name</th>
+    			<td><%=h @client.father%></td>
+  		</tr>
+  		<tr>
+    			<th>DOB</th>
+    			<td><%=change_format_to_long(@client.dob)%></td>
+  		</tr>
+	</table>
+      <%if @client.client_type == "corporate"%>
+	<div class="show_heading">Contact Person Details</div>
+  	<table class="formstyle formbg" width="100%">
+		<tr>
+			<th width="20%">Name</th>
+    			<td><%=h @client.contact_person_name%></td>
+  		</tr>
+  		<tr>
+    			<th>Designation</td>
+    			<td><%=h @client.contact_person_designation%></td>
+  		</tr>
+  		<tr>
+    			<th>Phone Number</th>
+    			<td><%=h @client.contact_person_phone_number%></td>
+  		</tr>
+	</table>
+	<div class="show_heading">Authorized Person Details</div>
+  	<table class="formstyle formbg" width="100%">
+		<tr>
+	    		<th width="20%">Name</th>
+    			<td><%=h @client.contact_person_name%></td>
+  		</tr>
+		<tr>
+    			<th>Designation</th>
+    			<td><%=h @client.contact_person_designation%></td>
+  		</tr>
+  		<tr>
+    			<th>Phone Number</th>
+    			<td><%=h @client.contact_person_phone_number%></td>
+  		</tr>
+   	</table>
+      <%end%>
+	<div class="show">
+    		<div class="show_heading">Other details</div>
+    		<p><%=h @client.other_details %></p>
+	</div>
+
+<div class="btm">
+	Created By:Lawyer <%=find_user(@client.created_by).name%> on <%=change_format_to_long(@client.created_at)%>
+</div>
+</div>
+<div class="sidebar">
+	<ul>
+		<li><%= link_to "Invoice", new_invoice_path(:client_id=>@client.id), :class => 'buttonAdd' %></li>
+  		<li><%= link_to "Account Balance", '', :class => 'buttonAdd' %></li>
+ 		<li><%= link_to "Write a Letter",new_letter_path(:client_id=>@client.id) %></li>
+                <li><%= link_to "Letters",letters_path(:client_id=>@client.id) %></li>
+        	<li><%= link_to "Message",new_message_path(:client_id=>@client.id) %></li>
+                <li><%= link_to "Messages",messages_path(:client_id=>@client.id) %></li>
+        	<li><%= link_to "Compose E-Mail",new_email_path(:client_id=>@client.id) %></li>
+                <li><%= link_to "Sent E-Mail",emails_path(:client_id=>@client.id) %></li>
+       		<li><%= link_to "New Case", new_case_path(:client_id=>@client), :class => 'buttonAdd' %></li>
+  		<li><%= link_to "New Alert", new_alert_path(:client_id=>@client.id), :class => 'buttonAdd' %></li>
+		<br />
+		<li class="edit"><%= link_to 'Edit', edit_client_path(@client) %></li>
+ 		<li class="edit"><%= link_to 'Back', clients_path %></li>
+	</ul>
+</div>
+
+<div class="clear"></div>
+

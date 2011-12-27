@@ -1,0 +1,66 @@
+ <div id="left_box">
+<% form_for(@case) do |f| %>
+  <%= f.error_messages %>
+<table class="formstyle" width="100%">
+  <%if params[:type] == "add_client"%>
+  		<tr>
+    			<th><%= f.label :client %></th>
+    			<td><%= f.select :client_id,firm_clients(current_user),:include_blank=>true%></td>
+		</tr>
+		
+  		<%else%>
+     			<%=f.hidden_field :client_id,:value=>params[:client_id]%>
+  		<%end%>
+     
+        	<tr>
+                	<th><%= f.label :case_type %></th>
+                	<td><%= f.select :case_type,$case_types,:include_blank=>true%></td>
+        	</tr>
+        	<tr>
+                	<th><%= f.label :lawyer %></th>
+                	<td><%= f.select :user_id,firm_lawyers(current_user),:include_blank=>true%></td>
+        	</tr>
+        	<tr>
+                	<th><%= f.label :our_client %></th>
+                	<td><%= f.select :our_client,$our_client,:include_blank=>true%></td>
+        	</tr>
+        	<tr>
+                	<th><%= f.label :file_number %></th>
+                	<td><%= f.text_field :file_number %></td>
+        	</tr>
+        	<tr>
+                	<th><%= f.label :facts_of_the_case %></th>
+                	<td><%= f.text_area :facts_of_the_case ,:rows=>7,:cols=>30%></td>
+        	</tr>
+        	<tr>
+                	<th><%= f.label :opponent_details %></th>
+                	<td><%= f.text_area :opponent_details ,:rows=>7,:cols=>30%></td>
+        	</tr>
+    </table>
+</div>
+<div id="right_box">
+    <table class="formstyle" width="100%">
+        <tr>
+                <th><%= f.label :opponent_advocate %></th>
+                <td><%= f.text_field :opponent_advocate%></td>
+        </tr>
+        <tr>
+                <th><%= f.label :last_date_for_submission%></th>
+                <td><input class="case[last_date_for_submission]" id="cal" name = "case[last_date_for_submission]" value=""/></td>
+        </tr>
+        <tr>
+                <th><%= f.label :citations %></th>
+                <td><%= f.text_area :citations ,:rows=>9,:cols=>30%></td>
+        </tr>
+        <tr>
+                <th><%= f.label :notes %></th>
+                <td><%= f.text_area :notes ,:rows=>10,:cols=>30%></td>
+        </tr>
+</table>
+<div class="button">
+  <center><%= f.submit 'Create' %></center>
+    <% end %>
+</div>
+<!--><%= link_to 'Back', cases_path %>-->
+</div>
+<div class="clear"></div>

@@ -1,0 +1,21 @@
+<p>
+  <b>User:</b>
+  <%=@email.user.name%>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%=find_client(@email.client_id)%>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=h @email.subject %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @email.content %>
+</p>
+
+

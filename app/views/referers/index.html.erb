@@ -1,0 +1,28 @@
+<div class="clear"></div>
+<table class='listing'>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone number</th>
+    <th>Mobile number</th>
+    <th>Mail</th>
+    <th>Other details</th>
+    <th>Show</th>
+  </tr>
+
+<% @referers.each do |referer| %>
+  <tr class="<%= cycle('odd', 'even')%>">
+    <td class="first"><%=h referer.name %></td>
+    <td><%=h referer.address %></td>
+    <td><%=h referer.phone_number %></td>
+    <td><%=h referer.mobile_number %></td>
+    <td><%=h referer.mail %></td>
+    <td><%=h referer.other_details %></td>
+    <td class="last"><%= link_to '<img src="/images/view.gif" title="show" />', referer %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+

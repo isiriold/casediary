@@ -1,0 +1,35 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left">
+	<tr>
+  		<th width="25%">User</th>
+  		<td><%=@account.user.name%></td>
+	</tr>
+	<tr>
+  		<th>Type</th>
+  		<td><%=h @account.account_type %></td>
+	</tr>
+</table>
+<table class="show_right">
+	<tr>
+		<th width="40%">Opening balance</th>
+  		<td>Rs.<%=h @account.opening_balance %></td>
+	</tr>
+	<tr>
+  		<th>Current balance</th>
+  		<td>Rs.<%=h @account.current_balance %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+  		<div class="show_heading">Account Name</div>
+  		<p><%=h @account.account_name %></p>
+</div>
+</div>
+<div class="sidebar">
+	<br /><br />
+<ul>
+	<li class="edit"><%= link_to 'Edit', edit_account_path(@account) %></li>
+	<li class="edit"><%= link_to 'Back', accounts_path %></li>
+</ul>
+</div>

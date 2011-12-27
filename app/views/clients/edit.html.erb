@@ -1,0 +1,102 @@
+ <div id="left_box">
+ <% form_for(@client) do |f| %>
+ <%= f.error_messages %>
+	 <table class="formstyle" width="100%">
+  		<tr>
+    			<th><%= f.label :name %></th>
+    			<td><%= f.text_field :name %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :address %></th>
+    			<td><%= f.text_area :address,:rows=>5,:cols=>35 %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :phone_number %></th>
+    			<td><%= f.text_field :phone_number %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :mobile_number %></th>
+    			<td><%= f.text_field :mobile_number %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :mail %></th>
+    			<td><%= f.text_field :mail %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :other_details %></th>
+    			<td><%= f.text_area :other_details,:rows=>5,:cols=>35 %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :referer_id %></th>
+    		<td><%= f.select :referer_id,all_referers,:include_blank=>true%></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :client_type %></th>
+    		<td> &nbsp; &nbsp;<%= radio_button_tag ('client_type', 'individual', checked = true,options = {:onclick => " Element.hide('corporate_details');Element.show('btn');"})%>Individual 
+    &nbsp; &nbsp;<%= radio_button_tag ('client_type', 'corporate', checked = false,options = {:onclick => " Element.show('corporate_details');Element.hide('btn');"})%>Corporate 
+  		</td>
+  	</tr>
+
+	<tr>
+    		<th><%= f.label :father %></th>
+    		<td><%= f.text_field :father %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :dob %></th>
+    		<td><input class="client[dob]" id="cal" name = "client[dob]" value=""/></td>
+  	</tr>
+        <tr>
+    		<th><%= f.label :other_details %></th>
+    		<td><%= f.text_area :other_details,:cols=>30,:rows=>5 %></td>
+  	</tr>
+</table>
+     <div id="btn">
+             <center><%= f.submit 'Update' %></center>
+       </div>
+</div>
+
+<div id = "corporate_details" style="display:none">
+<div id="right_box">
+<table class="formstyle" width="100%">
+	<tr>
+    		<td><h3>Contact person detail:</h3></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :name %></th>
+    		<td><%= f.text_field :contact_person_name%></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :designation %></th>
+    		<td><%= f.text_field :contact_person_designation%></td>
+  	</tr>
+		
+  	<tr>
+    		<th><%= f.label :phone_number %></th>
+    		<td><%= f.text_field :contact_person_phone_number%></td>
+  	</tr>
+	<tr>
+    		<td><h3>Authorized person detail:</h3></td>
+  	</tr>
+ 	<tr>
+    		<th><%= f.label :name %></th>
+    		<td><%= f.text_field :contact_person_name%></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :designation %></th>
+    		<td><%= f.text_field :contact_person_designation%></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :phone_number %></th>
+    		<td><%= f.text_field :contact_person_phone_number%></td>
+  	</tr>
+  
+        </table>
+
+       <div class="button">
+           <center><%= f.submit 'Update' %></center>
+       <% end %>
+     </div>
+    </div>
+   </div>
+
+<div class="clear"></div>

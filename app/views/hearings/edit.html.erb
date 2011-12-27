@@ -1,0 +1,38 @@
+<div id="left_box">
+<% form_for(@hearing) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle" width="98%">
+	<tr>
+    		<th><%= f.label :court_hall %></th>
+    		<td><%= f.text_field :court_hall %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :hearing_date %></th>
+    		<td><%= f.date_select :hearing_date %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :highlights_of_the_hearing %></th>
+    		<td><%= f.text_area :highlights_of_the_hearing ,:rows=>8,:cols=>35%></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :next_hearing_date %></th>
+    		<td><%= f.date_select :next_hearing_date %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :stage %></th>
+    		<td><%= f.text_field :stage %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :reminder_for_next_hearing %></th>
+    		<td><%= f.text_area :reminder_for_next_hearing ,:rows=>8,:cols=>35%></td>
+  	</tr>
+</table>
+<div class="button">
+    <center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+
+<!--<%= link_to 'Show', @hearing %> |
+<%= link_to 'Back', hearings_path %>-->
+</div>
+<div class="clear"></div>

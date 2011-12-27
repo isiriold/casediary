@@ -1,0 +1,45 @@
+<div id="leftbox">
+	<div class="show_heading">Lawyers Details</div>
+	<table class="show_left">
+		<tr>
+			<th width="35%">Law Firm </th><td><span><%=h @user.law_firm.firm_name%></td>
+		</tr>
+		<tr>
+			<th>Name</th><td><%=h @user.name%></td>
+		</tr>
+		<tr>
+			<th>Phone Number</th><td><%=h @user.phone_number %></td>
+		</tr>
+		<tr>
+			<th>Email</th><td><%=h @user.email %></td>
+		</tr>
+	</table>
+
+	<table class="show_right">
+		<tr>
+			<th width="35%">Mobile Number</th><td><%=h @user.mobile_number %></td>
+		</tr>
+		<tr>
+			<th>Role</th><td><%=h @user.role %></td>
+		</tr>
+		<tr>
+			<td>Username</td><td><%=h @user.username %></td>
+		</tr>
+		<tr>
+			<th>Password</th><td><%=h @user.password %></td>
+		</tr>
+	</table>
+	<div class="clear"></div>
+	<div class="show">
+  		<div class="show_heading">Address</div>
+		<p><%=h @user.address %></p>
+	</div>
+</div>
+<div class="sidebar">
+	<ul>
+		<li><%= link_to "New Alert", new_alert_path(:user_id=>@user.id)%></li>
+		<br />
+		<li class="edit"><%= link_to 'Edit', edit_user_path(@user) %> </li>
+	</ul>
+</div>
+

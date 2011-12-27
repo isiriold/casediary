@@ -1,0 +1,38 @@
+<%unless params[:status] == "Judgement"%>
+<% form_for(@case_obj,:url=>update_status_case_path) do |f| %>
+  <%= f.error_messages %>
+  <%=hidden_field_tag "status",params[:status]%>
+
+  <p>
+    <%= f.label :case_number %><br />
+    <%= f.text_field :case_number %>
+  </p>
+  <p>
+    <%= f.label :date_of_filing %><br />
+    <%= f.date_select :date_of_filing %>
+  </p>
+  
+  <p>
+    <%= f.label :first_hearing_date %><br />
+    <%= f.date_select :first_hearing_date %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+<%else%>
+   <% form_for(@case_obj,:url=>update_status_case_path) do |f| %>
+    <%= f.error_messages %>
+    <%=hidden_field_tag "status",params[:status]%>
+
+    <p>
+     <%= f.label :judgement_summary%><br />
+     <%= f.text_area :judgement_summary%>
+    </p> 
+   
+     <p>
+       <%= f.submit 'Update' %>
+    </p>
+  <%end%>
+<%end%>

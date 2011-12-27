@@ -1,0 +1,35 @@
+
+<% form_for(@referer) do |f| %>
+  <%= f.error_messages %>
+	<div class="show_heading">New Referer</div>
+	<table class="formstyle" width="99%" cellpadding="5px">
+  		<tr>
+    		<th><%= f.label :name %></th>
+    		<td><%= f.text_field :name %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :address %></th>
+    		<td><%= f.text_area :address ,:rows=>10,:cols=>35%></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :phone_number %></th>
+    		<td><%= f.text_field :phone_number %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :mobile_number %></th>
+    		<td><%= f.text_field :mobile_number %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :mail %></th>
+    		<td><%= f.text_field :mail %></td>
+  		</tr>
+  		<tr>
+    		<th><%= f.label :other_details %></th>
+    		<td><%= f.text_area :other_details ,:rows=>10,:cols=>35%></td>
+  		</tr>
+	</table>
+	<div class="button">
+    	<center><%= f.submit 'Create' %></center>
+  	</div>
+<% end %>
+

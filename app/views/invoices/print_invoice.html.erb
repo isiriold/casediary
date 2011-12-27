@@ -1,0 +1,21 @@
+<div class="print">
+<div class="left"><h2><%=current_user.law_firm.firm_name%></h2></div>
+<div class="right"><h2>Invoice No:<%=@invoice_object.invoice_number%></h2></div>
+<div class="clear"></div>
+
+<div class="right">
+<h2><%=@invoice_object.client.name%><br/>
+<%=@invoice_object.client.address%><br/>
+<%=@invoice_object.client.phone_number%>,<%=@invoice_object.client.mobile_number%></h2><br/><br/>
+</div>
+<div class="clear"></div>
+<h2>Towards </h2>
+<h3>Rs.<%=@invoice_object.towards%></h3>
+<div class="right">
+<h3>Advocate Name :<%=admin_name(current_user).name%></h3>
+</div>
+<div class='hide-for-print'>
+  <%= link_to_function("Print this Page", "javascript:print()") %>
+</div>
+</div>
+

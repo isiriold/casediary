@@ -1,0 +1,37 @@
+<table class="tableheader" width="100%" >
+	<tr>
+		<th width="90%">Listing invoices</th>
+		<td class="new_btn"><%= link_to 'New invoice', new_invoice_path %></td>
+	</tr>
+</table>
+
+<table class="listing">
+   <%unless @invoices.blank?%>   
+	<tr>
+    		<th class="first">Client</th>
+    		<th>Account</th>
+    		<th>Invoice number</th>
+    		<th>Invoice amount</th>
+    		<th>Towards</th>
+    		<th>Payment received</th>
+		<th class="last">Show</th>
+  	</tr>
+     <% @invoices.each do |invoice| %>
+ 	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{find_client(invoice.client_id)}",client_path(invoice.client_id)%></td>
+    		<td><%=invoice.account.account_name%></td>
+    		<td><%=h invoice.invoice_number %></td>
+    		<td>Rs.<%=h invoice.invoice_amount %></td>
+    		<td><%=h invoice.towards %></td>
+    		<td><%=display_payment_received(invoice.payment_received)%></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', invoice %></td>
+  	</tr>
+     <% end %>
+      <tr><td><div id = "pg"><%=will_paginate @invoices%></div></td></tr>
+   <%else%>
+      <tr><td><center>No invoices found</center></td></tr>
+   <%end%>
+</table>
+
+
+

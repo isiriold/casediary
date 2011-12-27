@@ -1,0 +1,24 @@
+<h1>New document</h1>
+<table>
+<% form_for(@document) do |f| %>
+  <%= f.error_messages %>
+   <%=f.hidden_field :user_id,:value=>current_user.id%>
+   <%=f.hidden_field :case_id,:value=>params[:id]%>
+  <tr>
+    <th><%= f.label :name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+     <th><%= f.label :status %></th>
+     <td><%=radio_button_tag ('status','pending', checked = false,:value=>"Pending")%>Pending
+    &nbsp; &nbsp;<%=radio_button_tag ('status','received', 'checked =false',:value=>"Recieved")%>Recieved
+     </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><%= f.submit 'Create' %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'Back', documents_path %>

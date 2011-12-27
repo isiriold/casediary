@@ -1,0 +1,11 @@
+<h2><b><%=current_user.law_firm.firm_name%></b><br/>
+Receipt Number :<%=@invoice_object.invoice_number%><br/>
+
+Received with thanks from <%=@invoice_object.client.name%>, <%=@invoice_object.client.address%> the sum of Rupees <%=@invoice_object.invoice_amount%> towards <%=@invoice_object.towards%><br/><br/>
+
+<%=admin_name(current_user).name%></h2><br/><br/>
+
+<div class='hide-for-print'>
+  <%= link_to_function("Print this Page", "javascript:print()") %>
+</div>
+

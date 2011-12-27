@@ -1,0 +1,25 @@
+<div id="leftbox">
+<div class="spacing"></div>
+<table class="formstyle show_left" width="100%">
+	<tr>
+		<th>Allocated to</th><td><%=@allocation.user.name%></td>
+	</tr>
+	<tr>
+  		<th>Amount</th><td>Rs.<%=h @allocation.amount %></td>
+	</tr>
+	<tr>
+  		<th>Date of allocation</th><td><%=change_format_to_long(@allocation.date_of_allocation)%></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+	<div class="show_heading">Purpose</div>
+  	<p><%=h @allocation.purpose %></p>
+</div>
+</div>
+<div class="sidebar">
+	<br /><br />
+	<ul>
+				<li class="edit"><%= link_to 'Back', allocations_path %></li>
+	</ul>
+</div>

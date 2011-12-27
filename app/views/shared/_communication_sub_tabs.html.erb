@@ -1,0 +1,8 @@
+<div id="sub-menu">
+  <ul>
+    <li class= <%='current' if (request.request_uri =~ /letters/)%> ><%=link_to "Letter",letters_path(:type=>"communication")%></li> |
+    <li class= <%='current' if (request.request_uri =~ /letters/)%> ><%=link_to "Message",messages_path(:type=>"communication")%></li> |
+   <li class= <%='current' if (request.request_uri =~ /emails/)%> ><%=link_to "Emails",emails_path(:type=>"communication")%></li>
+  </ul>
+</div>
+

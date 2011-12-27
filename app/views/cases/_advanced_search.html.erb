@@ -1,0 +1,34 @@
+<% form_remote_tag({ :url => cases_url,:method => :get}) do %>
+   <table class="search">
+      <%fields_for @search do |f| %>
+      	  <% f.fields_for @search.conditions do |c| %>
+      	      <tr>
+          		<th><%=label_tag 'File Number:'%></th>
+          		<td class="new"><%= c.text_field :file_number%></td>
+          		<th><%=label_tag 'Case Number:'%></th> 
+          		<td class="new"><%= c.text_field :case_number%></td>
+       		</tr>
+       		<tr>   
+          		<th><%=label_tag 'Date of Filing:'%></th>
+          		<td class="new"><%= c.text_field :date_of_filing,:id=>"datepicker1"%></td>
+          		<th><%=label_tag 'Last Date for Submission:'%></th>
+          		<td class="new"><%= c.text_field :last_date_for_submission,:id=>"datepicker2"%></td>
+		</tr> 
+                <tr>   
+          		<th><%=label_tag 'Status:'%></th>
+          		<td class="new"><%= c.text_field :status_like%></td>
+          		<th><%=label_tag 'First Hearing Date:'%></th>
+          		<td class="new"><%= c.text_field :first_hearing_date,:id=>"datepicker3"%></td>
+		</tr> 
+	
+                <tr>   
+          		<th><%=label_tag 'Our client:'%></th>
+          		<td class="new"><%= c.text_field :our_client_like%></td>
+                        <th></th>
+                        <td><%= submit_tag "Search" %>  
+              	            <input type="Reset" value="Reset"></td>
+		</tr>
+            <%end%>
+        <%end%>
+     </table>
+ <%end%>

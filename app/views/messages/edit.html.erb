@@ -1,0 +1,19 @@
+<div id="left_box">
+<% form_for(@message) do |f| %>
+  <%= f.error_messages %>
+<table class="formstyle" width="100%">
+	<tr>
+    		<th><%= f.hidden_field :user_id %></th><td><%= f.hidden_field :client_id %></td>
+	</tr>
+	<tr>
+    		<th><%= f.label :regarding %></th><td><%= f.text_field :regarding %></td>
+  	</tr>
+  	<tr>
+    		<th><%= f.label :content %></th><td><%= f.text_area :message_body %></td>
+  	</tr>
+</table>
+<div id="btn">
+    <center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+</div>

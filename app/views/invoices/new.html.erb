@@ -1,0 +1,46 @@
+<div id="left_box">
+<% form_for(@invoice) do |f| %>
+  <%= f.error_messages %>
+<table class="formstyle" width="100%">
+	<tr>
+                <%= f.hidden_field :user_id,:value=>current_user.id%>
+    		<th><%= f.label :client_id %></th>
+                <%if params[:client_id].blank?%>
+                     <td><%= f.select :client_id,firm_clients(current_user),:include_blank=>true%></td>
+                <%else%>
+                      <%= f.hidden_field :client_id,:value=>params[:client_id]%>
+                     <td><%=find_client(params[:client_id])%></td>
+           	<%end%>
+    		
+	</tr>
+	<tr>
+    		<th><%= f.label :account_id %></th>
+    		<td><%= f.select :account_id,firm_income_accounts(current_user),:include_blank=>true%></td>
+	</tr>
+	<tr>
+    		<th><%= f.label :invoice_number %></th>
+    		<td><%= f.text_field :invoice_number,:value=>@invoice_no%></td>
+	</tr>
+	<tr>
+    		<th><%= f.label :invoice_amount %></th>
+    		<td><%= f.text_field :invoice_amount %></td>
+	</tr>
+	<tr>
+    		<th><%= f.label :towards %></th>
+    		<td><%= f.text_area :towards,:rows=>5,:cols=>32 %></td>
+	</tr>
+  	<tr>
+		<th><%= f.label :payment_received %></th>
+		<td>
+  			<%= radio_button_tag ('payment_received', 'yes', checked = true)%>Yes 
+   			<%= radio_button_tag ('payment_received', 'no', checked = false)%>No 
+		</td>
+	</tr>
+</table>
+<div class="button">
+    <center><%= f.submit 'Create' %></center>
+</div>
+<% end %>
+
+</div>
+<div class="clear"></div>

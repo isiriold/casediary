@@ -1,0 +1,31 @@
+<table class="tableheader" width="100%">
+	<tr>
+		<th width="88%">Listing allocations</th>
+	 	<td class="new_btn"><%= link_to 'New allocation', new_allocation_path %></td>
+	</tr>
+</table>
+
+<table class="listing">
+    <%unless @allocations.blank?%>
+	<tr>
+    		<th class="first">Allocated to</th>
+    		<th>Amount</th>
+    		<th>Date of allocation</th>
+		<th class="last">Show</th>
+  	</tr>
+     <% @allocations.each do |allocation| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{allocation.user.name}", user_path(allocation.user)%></td>
+    		<td>Rs.<%=h allocation.amount %></td>
+    		<td><%=change_format_to_long(allocation.date_of_allocation)%></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', allocation %></td>
+  	</tr>
+     <%end%>
+        <tr><td><div id="pg"><%=will_paginate @allocations%></div></td></tr>
+    <%else%>
+        <tr><td><center>No allocations found</center></td></tr>
+      <% end %>
+</table>
+
+
+

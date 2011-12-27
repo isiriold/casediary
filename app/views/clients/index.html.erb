@@ -1,0 +1,30 @@
+	<div id="advanced_search" style="display:none">
+		<table cellspacing="3px">
+			<tr>
+				<td>
+				<%=link_to('Simple Search','#simple_search',options = {:onclick => "Element.show('simple_search');Element.hide('advanced_search');"})%>
+				<%= render :partial => 'advanced_search' %>
+				</td>				
+			</tr>
+		</table>
+	</div>  
+	<div id="simple_search">
+		<table cellspacing="5px">
+			<tr>
+				<td width="20%">
+   					<%= render :partial => 'simple_search' %>
+				</td>
+				<td width="60%">
+				<%=link_to('Advanced Search','#advanced_search',options = {:onclick => "Element.show('advanced_search');Element.hide('simple_search');"})%>
+				</td>
+				<td width="15%" class="new_btn">
+				<%= link_to "New Client", new_client_path, :class => 'buttonAdd' %>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="search_result">
+		<%=render :partial=>'search_result'%>
+	</div>
+
+

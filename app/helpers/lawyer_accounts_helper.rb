@@ -1,0 +1,2 @@
+module LawyerAccountsHelper
+end

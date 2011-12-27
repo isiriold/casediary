@@ -1,0 +1,41 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left">
+	<tr>
+  		<th>Name</th>
+  		<td><%=h @referer.name %></td>
+	</tr>
+	<tr>
+  		<th>Mail</th>
+  		<td><%=h @referer.mail %></td>
+	</tr>
+</table>
+<table class="show_right">
+	<tr>
+  		<th>Phone No</th>
+  		<td><%=h @referer.phone_number %></td>
+	</tr>
+	<tr>
+  		<th>Mobile No</th>
+  		<td><%=h @referer.mobile_number %></td>
+	</tr>
+</table>
+<div class="clear"></div>                                   
+<div class="show">
+	<div class="show_heading">Address</div>
+  	<p><%=h @referer.address %></p>
+</div>
+
+<div class="show">
+	<div class="show_heading">Other details</div>
+  	<p><%=h @referer.other_details %></p>
+</div>
+</div>
+
+<div class="sidebar">
+<ul>
+	<br /><br />
+	<li class="edit"><%= link_to 'Edit', edit_referer_path(@referer) %> </li>
+	<li class="edit"><%= link_to 'Back', referers_path %></li>
+</ul>
+</div>

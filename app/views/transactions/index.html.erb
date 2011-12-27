@@ -1,0 +1,37 @@
+<table class="tableheader" width="100%">
+	<tr>
+		<td width="88%">Listing transactions</td>
+		<td class="new_btn"><%= link_to 'New transaction', new_transaction_path %></td>
+	</tr>
+</table>
+
+<table class='listing'>
+   <%unless @transactions.blank?%>
+	<tr>
+    		<th>Client</th>
+    		<th>Spent By</th>
+    		<th>Account</th>
+    		<th>Amount</th>
+    		<th>Purpose</th>
+		<th>Show</th>
+   	</tr>
+
+      <% @transactions.each do |transaction| %>
+   	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{find_client_object(transaction.id).name}",client_path(find_client_object(transaction.id))%></td>
+    		<td><%=link_to "#{transaction.spender.name}",user_path(transaction.spender)%></td>
+    		<td><%=transaction.account.account_name%></td>
+    		<td>Rs.<%=h transaction.amount %></td>
+    		<td><%=h transaction.purpose %></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show"/>', transaction %></td>
+	</tr>
+     <% end %>
+
+       <tr><td><div id = "pg"><%=will_paginate @transactions%></div></td></tr>
+   <%else%>
+       <tr><td><center>No transactions found</center></td></tr>
+   <%end%>
+
+</table>
+
+

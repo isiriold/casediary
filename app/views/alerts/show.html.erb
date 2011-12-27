@@ -1,0 +1,44 @@
+<div id="leftbox">
+<div class="show_heading">Alerts</div>
+<table class="show_left" cellpadding="5px" >
+<%unless @alert.client_id.blank?%>
+	<tr>
+  		<th>Client</th><td><%=h @alert.client.name%></td>
+	</tr>
+<%end%>
+<%unless @alert.case_id.blank?%>
+	<tr>
+  		<th>Case file number</th><td><%=h @alert.case.file_number %></td>
+	</tr>
+<%end%>
+
+	<tr>
+		<th>Lawyer</th><td><%=@alert.user.name%></td>
+	</tr>
+<%unless @alert.hearing_id.blank?%>
+	<tr>
+  		<th>Hearing</th><td><%=change_format_to_long(@alert.hearing.hearing_date)%></td>
+	</tr>
+<%end%>
+</table>
+<table class="show_right" cellpadding="5px">
+	<tr>
+  		<th>Display status</th><td><%=h @alert.display_status %></td>
+	</tr>
+	<tr>
+  		<th>Display till</th><td><%=change_format_to_long(@alert.display_till)%></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+    <div class="show_heading">Alert text</div>
+    <p><%=h @alert.alert_text %></p>
+</div>
+</div>
+<div class="sidebar">
+	<br /><br />
+	<ul>
+		<li class="edit"><%= link_to 'Edit', edit_alert_path(@alert) %></li>
+		<li class="edit"><%= link_to "Back", :back %></li>
+	</ul>
+</div>

@@ -1,0 +1,48 @@
+ <div id="leftbox">
+	<div class="show_heading">Hearings Details</div>
+<table class="show_left">
+	<tr>
+		<th width="32%">Court Hall</th><td><%=h @hearing.court_hall %></td>
+	</tr>
+	<%if @hearing.case.status=="submitted"%>
+	<tr>
+		<th>Case Number</th><td><%=h @hearing.case.case_number %></td>
+	</tr>
+	<%end%>
+	<tr>
+		<th>Hearing Date</th><td><%=change_format_to_long(@hearing.hearing_date)%></td>
+	</tr>
+
+</table>
+
+<table class="show_right">
+	<tr>
+  		<th width="38%">Next hearing date</th><td><%=change_format_to_long(@hearing.next_hearing_date)%></td>
+	</tr>
+
+	<tr>
+  		<th>Attended by</th><td><%=find_user(@hearing.attended_by).name%></td>
+	</tr>
+	<tr>
+  		<th>Status</th><td><%=h @hearing.stage %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+  <div class="show_heading">Highlights of the hearing:</div>
+  <p><%=h @hearing.highlights_of_the_hearing %></p>
+</div>
+
+<div class="show">
+  <div class="show_heading">Reminder for next hearing:</div>
+  <p><%=h @hearing.reminder_for_next_hearing %></p>
+</div>
+</div>
+<div class="sidebar">
+<ul>
+	<li><%= link_to "New Alert", new_alert_path(:hearing_id=>@hearing.id)%> </li>
+	<li><%= link_to 'Update', new_hearing_path %></li>
+	<br />
+	<li class="edit"><%= link_to 'Back', hearings_path %> </li>
+</ul>
+</div>

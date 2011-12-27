@@ -1,0 +1,24 @@
+<table class="tableheader" width="100%">
+	<tr>
+		<td width="80%">Listing Saved letters</td>
+		<td class="new_btn" width="15%"><%= link_to 'New saved letter', new_saved_letter_path %></td>
+	</tr>
+</table>
+<table class="listing">
+  	<tr>
+    		<th>Lawyer</th>
+    		<th>Regarding</th>
+    		<th>Content</th>
+    		<th>Show</th>
+  	</tr>
+<% @saved_letters.each do |saved_letter| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=h saved_letter.user.name%></td>
+    		<td><%=h saved_letter.regarding %></td>
+    		<td><%=split_content(saved_letter.content)%></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', saved_letter %></td>
+  	</tr>
+<% end %>
+</table>
+
+

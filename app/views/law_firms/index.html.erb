@@ -1,0 +1,32 @@
+<h1>Listing law_firms</h1>
+
+<table>
+  <tr>
+    <th>Firm name</th>
+    <th>Address</th>
+    <th>Contact person</th>
+    <th>Phone number</th>
+    <th>Mobile</th>
+    <th>Mail</th>
+    <th>Website</th>
+  </tr>
+
+<% @law_firms.each do |law_firm| %>
+  <tr>
+    <td><%=h law_firm.firm_name %></td>
+    <td><%=h law_firm.address %></td>
+    <td><%=h law_firm.contact_person %></td>
+    <td><%=h law_firm.phone_number %></td>
+    <td><%=h law_firm.mobile %></td>
+    <td><%=h law_firm.mail %></td>
+    <td><%=h law_firm.website %></td>
+    <td><%= link_to 'Show', law_firm %></td>
+    <td><%= link_to 'Edit', edit_law_firm_path(law_firm) %></td>
+    <td><%= link_to 'Destroy', law_firm, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New law_firm', new_law_firm_path %>

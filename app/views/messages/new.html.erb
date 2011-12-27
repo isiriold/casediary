@@ -1,0 +1,40 @@
+ <div id="left_box">
+    <% form_for(@message) do |f| %>
+    <%= f.error_messages %>
+	<table class="formstyle" width="100%" cellpadding="3px">
+  	<tr>
+           <%= f.hidden_field :user_id,:value=>current_user.id%>
+    <%if params[:type].blank?%>
+            <%= f.hidden_field :client_id,:value=>params[:client_id]%>
+    <%else%>
+           <th>To :</th>
+           <td><%=f.select :client_id,firm_clients(current_user)%></td>
+    <%end%>
+        </tr>
+        <tr>
+                <th><%= f.label :regarding %></th>
+                <td><%= f.text_field :regarding %></td>
+        </tr>
+        <tr>
+                <th><%= f.label :content %></th>
+                <td><%= f.text_area :message_body %></td>
+        </tr>
+        <tr>
+           <td></td>
+           <td><span id="counter"></span>&nbsp; characters left to complete one message.</td>
+       </tr>
+    </table>
+ <div class="button">
+    <center><%= f.submit 'Send' %></center>
+  </div>
+<% end %>
+</div>
+
+
+<div class="clear"></div>
+<script type="text/javascript">
+	jQuery(document).ready(function()
+	{
+	jQuery('#message_message_body').simplyCountable();
+	});
+</script>

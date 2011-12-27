@@ -1,0 +1,33 @@
+<% if @cases.size > 0 %>
+<h3><%= @cases_count %> Cases Found</h3>
+<table class="listing">
+	<tr>
+    		<th class="first">Client</th>
+    		<th>Lawyer</th>
+    		<th>File number</th>
+    		<th>Case number</th>
+    		<th>Date of submission</th>
+    		<th>Hearings</th>
+    		<th>Status</th>
+    		<th class="last">Show</th>
+  </tr>
+<% @cases.each do |c| %>
+	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{c.client.name}",client_path(c.client)%></td>
+    		<td><%=link_to "#{c.user.name}",user_path(c.user)%></td>
+    		<td><%=h c.file_number %></td>
+    		<td><%=h c.case_number %></td>
+    		<td><%=change_format_to_long(c.last_date_for_submission)%></td>
+    		<td><%=c.hearings.count%></td>
+    		<td><%=c.status%></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="show"/>', c %></td>
+	</tr>
+<% end %>
+</table>
+<br />
+  <%else%>
+      No cases were returned
+ <%end%> 
+<%if @cases_count > 0%>
+ <div id = "pg"> <%=remote_page_links %> </div>
+<%end%>

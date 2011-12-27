@@ -1,0 +1,28 @@
+<div id="left_box">
+<% form_for(@letter) do |f| %>
+  <%= f.error_messages %>
+	<table class="formstyle">
+		<tr>
+			<th><%= f.hidden_field :user_id %></th>
+    			<td><%= f.hidden_field :client_id %></td>
+		</tr>
+		<tr>
+    			<th><%= f.label :regarding %></th>
+    			<td><%= f.text_field :regarding %></td>
+  		</tr>
+ 		<tr>
+    			<th><%= f.label :content %></th>
+    			<td><%= f.text_area :content ,:rows=>15,:cols=>35%></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :cc_to %></th>
+    			<td><%= f.text_field :cc_to %></td>
+  		</tr>
+	</table>
+	<div class="button">
+    		<center><%= f.submit 'Update' %></center>
+  	</div>
+  <% end %>
+<!--<%= link_to 'Show', @letter %> |
+<%= link_to 'Back', letters_path %>-->
+</div>

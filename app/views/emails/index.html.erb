@@ -1,0 +1,24 @@
+<h1>Listing emails</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Client</th>
+    <th>Subject</th>
+    <th>Content</th>
+  </tr>
+
+<% @emails.each do |email| %>
+  <tr>
+    <td><%=h email.user_id %></td>
+    <td><%=h email.client_id %></td>
+    <td><%=h email.subject %></td>
+    <td><%=h email.content %></td>
+    <td><%= link_to 'Show', email %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New email', new_email_path(:type=>"communication") %>

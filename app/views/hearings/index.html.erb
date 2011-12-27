@@ -1,0 +1,80 @@
+<table class="tableheader" width="100%" cellpadding="3px">
+	<tr>
+		<th>Listing hearings</th>
+	</tr>
+</table>
+
+
+<table class='listing'>
+    <%unless @hearings.blank?%>
+	<tr>
+    		<th class="first">Case Number</th>
+    		<th>Hearing date</th>
+    		<th>Next hearing date</th>
+    		<th>Attended by</th>
+    		<th>Client</th>
+    		<th class="last">Show</th>
+ 	</tr>
+
+	<% @hearings.each do |hearing| %>
+ 	 <%if Date.today <= hearing.hearing_date%>
+ 	   <tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{hearing.case.case_number}",case_path(hearing.case)%></td>
+    		<td><%=change_format_to_long(hearing.hearing_date)%></td>
+    		<td><%=change_format_to_long(hearing.next_hearing_date)%></td>
+    		<td><%=find_user(hearing.attended_by).name%></td>
+    		<td><%=link_to "#{hearing.case.client.name}",client_path(hearing.case.client) %></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', hearing %></td>
+  	  </tr>
+         <%end%>
+       <%end%>
+     <%end%>
+</table>
+
+
+
+<%unless @hearings.blank?%>
+<% @hearings.each do |hearing| %>
+  <%if Date.today > hearing.hearing_date%>
+    <div class="box">
+	  <table class="show_left">
+		<tr>
+                    <th width="28%">Hearing Date</th>
+                    <td><%=change_format_to_long(hearing.hearing_date)%></td>
+		</tr>
+		<tr>
+    		     <th>Client Name</th>
+                     <td><%=link_to "#{hearing.case.client.name}",client_path(hearing.case.client) %></td>
+		</tr>
+	   </table>
+
+	   <table class="show_right">
+		<tr>
+    		     <th width="25%">Case No</th>
+                     <td><%=link_to "#{hearing.case.case_number}",case_path(hearing.case)%></td>
+		</tr>
+		<tr>
+    		     <th>Attended By</th>
+                     <td><%=find_user(hearing.attended_by).name%></td>
+   		</tr>
+	   </table>
+
+        <div class="clear"></div>
+
+	<div class="show">
+  		<div class="show_heading">Highlights of the hearing</div>
+		<p><%=hearing.highlights_of_the_hearing%></p>
+	</div>
+
+    </div>
+
+     <div id = "pg"><%=will_paginate @hearings%></div>
+  <%end%>
+ <% end %>
+ 
+<% end -%>
+
+
+
+
+

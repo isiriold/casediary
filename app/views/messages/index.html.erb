@@ -1,0 +1,30 @@
+<table class="tableheader" width="100%">
+	<tr>
+		<td width="87%">Listing Messages</td>
+		<td class="new_btn"><%=link_to "New Message",new_message_path(:type=>"communication")%></td>
+	</tr>
+</table>
+
+<table class="listing">
+   <%unless @messages.blank?%>
+	<tr>
+    		<th class="first">From</th>
+    		<th>To</th>
+    		<th>Regarding</th>
+    		<th class="last">Show</th>
+  	</tr>
+       <% @messages.each do |message| %>
+	  <tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{message.user.name}",user_path(message.user)%></td>
+    		<td><%=link_to "#{find_client(message.client_id)}",client_path(message.client_id)%></td>
+    		<td><%=h message.regarding %></td>
+    		<td class="last"><%=link_to '<img src="/images/view.gif" title="show"/>',message%></td>
+  	 </tr>
+      <% end %>
+        <tr><td><div id="pg"><%=will_paginate @messages%></div></td></tr>
+   <%else%>
+        <tr><td><center>No Messages Found</center></td></tr>
+   <%end%>
+</table>
+
+

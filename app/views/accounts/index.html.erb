@@ -1,0 +1,33 @@
+<%if current_user.role == "Admin"%>
+<table class="tableheader" width="100%">
+	<tr>
+		<td width="90%">Listing accounts</td>
+		<td class="new_btn">
+		   <%= link_to 'New Account', new_account_path %>
+        </td>
+	</tr>
+</table>
+<table class="listing">
+  	<tr>
+    		<th class="first">Lawyer</th>
+    		<th>Account Name</th>
+    		<th>Type</th>
+    		<th>Opening balance</th>
+    		<th>Current balance</th>
+    		<th class="last">Show</th>
+  	</tr>
+<% @accounts.each do |account| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{account.user.name}",user_path(account.user)%></td>
+    		<td><%=h account.account_name%></td>
+    		<td><%=h account.account_type %></td>
+    		<td>Rs.<%=h account.opening_balance %></td>
+    		<td>Rs.<%=h account.current_balance %></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', account %></td>
+   	</tr>
+<% end %>
+</table><br />
+<%end%>
+
+
+

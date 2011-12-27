@@ -1,0 +1,43 @@
+<div id="left_box">
+<% form_for(@hearing) do |f| %>
+  <%= f.error_messages %>
+	<table class="formstyle" width="100%">
+  		<tr>
+    			<th><%= f.label :court_hall %></th>
+    			<td><%= f.text_field :court_hall %></td>
+  		</tr>
+ 		<%= f.hidden_field :case_id,:value=>params[:case_id]%>
+  		<tr>
+    			<th><%= f.label :lawer %></th>
+    			<td><%=f.select :user_id,firm_lawyers(current_user),:include_blank=>true%></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :hearing_date %></th>
+    			<td><input class="hearing[hearing_date]" id="cal" name = "hearing[hearing_date]" value=""/></td>
+ 		</tr>
+		<tr>
+    			<th><%= f.label :highlights_of_the_hearing %></th>
+    			<td><%= f.text_area :highlights_of_the_hearing ,:rows=>5,:cols=>35%></td>
+  		</tr>
+  		<tr>
+   		 	<th><%= f.label :next_hearing_date %></th>
+    			<td><input class="hearing[next_hearing_date]" id="cal1" name = "hearing[next_hearing_date]" value=""/></td>
+  		</tr>
+    		<%= f.hidden_field :attended_by,:value=>current_user.id %>
+  		<tr>
+    			<th><%= f.label :stage%></th>
+    			<td><%= f.text_field :stage %></td>
+  		</tr>
+  		<tr>
+    			<th><%= f.label :reminder_for_next_hearing %></th>
+    			<td><%= f.text_area :reminder_for_next_hearing ,:rows=>5,:cols=>35%></td>
+  		</tr>
+  	</table>
+	<div class="button">
+    	<center><%= f.submit 'Create' %></center>
+    			<% end %>
+	</div>
+
+<!--<%= link_to 'Back', hearings_path %>-->
+</div>
+<div class="clear"></div>

@@ -1,0 +1,26 @@
+<table class = 'tableheader' width="100%" cellpadding="3px">
+	<tr>
+        	<td width="90%">Listing Lawyers in (<%=current_user.law_firm.firm_name%> firm)</td>
+        	<td class="new_btn"><%= link_to "<span>Add Lawyer</span>", new_user_path, :class => 'buttonAdd' %></td>
+	</tr>
+</table>
+<table class='listing'>
+	<tr>
+    		<th class="first">Name</th>
+    		<th>Address</th>
+    		<th>Phone number</th>
+    		<th>Email</th>
+    		<th>Role</th>
+    		<th class="last">Show</th>
+  	</tr>
+<% @users.each do |user| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=h user.name %></td>
+    		<td><%=h user.address %></td>
+    		<td><%=h user.phone_number %></td>
+    		<td><%=h user.email%></td>
+    		<td><%=h user.role%></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="show"/>', user %></td>
+  	</tr>
+<% end %>
+</table>

@@ -1,0 +1,153 @@
+<%unless @my_alerts.blank?%>
+<h3 class="dashboard_heading">My Alerts</h3>
+  <%@my_alerts.each do |alert| %>
+	<div class="dashboard">
+		<table width="100%">
+			<tr>
+        			<td>Client:
+			<%unless alert.client.blank?%> 
+      				<span><%=link_to "#{alert.client.name}",client_path(alert.client)%></span>
+			<%else%>
+       					-
+				</td>
+    			<%end%>
+				<td>File Number:
+			<%unless alert.case.blank?%>
+      				<span><%=link_to "#{alert.case.file_number}",case_path(alert.case)%></span>
+			<%else%>
+					-
+				</td>
+			<%end%>
+			</tr>
+			<tr>
+				<td>Lawyer:<%=link_to "#{alert.user.name}",user_path(alert.user)%></td>
+				<td>Hearing:
+			<%unless alert.hearing.blank?%>
+      					<span><%=link_to "#{alert.hearing.hearing_date}",hearing_path(alert.hearing)%></span>
+			<%else%>
+      					-
+				</td>
+			<%end%>
+			</tr>
+		</table>
+		<p>Text:<br /><%=alert.alert_text%></p>
+		<table width="100%">
+			<tr>
+				<td>Dispaly Status:<%=alert_dispaly_status(alert.display_status)%></td>
+				<td><%=link_to "Show",alert_path(alert)%></td>
+			</tr>
+		</table>
+	</div>
+    <%end%>
+<%end%>
+
+<div class="clear"></div>
+<%unless @alerts.blank?%>
+	<h3>Alerts</h3>
+  	<table class='listing'> 
+   		<tr>
+      			<th class="first">Client</th>
+      			<th>File Number</th>
+      			<th>Lawyer</th>
+      			<th>Hearing</th>
+      			<th>Text</th>
+      			<th>Dispaly Status</th>
+      			<th class="last">Show</th>
+   	</tr>
+  <%@alerts.each do |alert| %>
+    	<tr class="<%= cycle('odd', 'even')%>">
+   <%unless alert.client.blank?%>
+      			<td><%=link_to "#{alert.client.name}",client_path(alert.client)%></td>
+   <%else%>
+      			<td>-</td>
+   <%end%>
+     			<%unless alert.case.blank?%>
+      			<td><%=link_to "#{alert.case.file_number}",case_path(alert.case)%></td>
+    <%else%>
+      			<td>-</td>
+    <%end%>
+      			<td><%=link_to "#{alert.user.name}",user_path(alert.user)%></td>
+     			<%unless alert.hearing.blank?%>
+      			<td><%=link_to "#{alert.hearing.hearing_date}",hearing_path(alert.hearing)%></td>
+    <%else%>
+      			<td>-</td>
+    <%end%>
+      			<td><%=alert.alert_text%></td>
+      			<td><%=alert_dispaly_status(alert.display_status)%></td>
+      			<td><%=link_to '<img src="/images/view.gif" title="Show" />',alert_path(alert)%></td>
+   	</tr>
+   <%end%>
+  </table>
+<%end%>
+<%unless @hearings_of_today.blank?%>
+<div class="show_heading">Hearings for today</div>
+	<table class='listing'>
+	  	<tr>
+	    		<th class="first">Case Number</th>
+	    		<th>Hearing date</th>
+	    		<th>Next hearing date</th>
+	    		<th>Attended by</th>
+	    		<th>Client</th>
+	    		<th class="last">Show</th>
+	 	</tr>
+<% @hearings_of_today.each do |hearing| %>
+	 	<tr class="<%= cycle('odd', 'even')%>">
+	    		<td class="first"><%=link_to "#{hearing.case.case_number}",case_path(hearing.case)%></td>
+	    		<td><%=change_format_to_long(hearing.hearing_date)%></td>
+	    		<td><%=change_format_to_long(hearing.next_hearing_date)%></td>
+	    		<td><%=find_user(hearing.attended_by).name%></td>
+	    		<td><%=link_to "#{hearing.case.client.name}",client_path(hearing.case.client) %></td>
+	    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', hearing %></td>
+	  	</tr>
+<%end%>
+	</table>
+<%end%>
+<div class="clear"></div>
+<%unless  @hearings_of_tomorrow.blank?%>
+<div class="show_heading">Hearings for tomarrow</div>
+	<table class='listing'>
+	  	<tr>
+	    		<th class="first">Case Number</th>
+	    		<th>Hearing date</th>
+	    		<th>Next hearing date</th>
+	    		<th>Attended by</th>
+	    		<th>Client</th>
+	    		<th class="last">Show</th>
+	 	</tr>
+<% @hearings_of_tomorrow.each do |hearing| %>
+	 	<tr class="<%= cycle('odd', 'even')%>">
+	    		<td class="first"><%=link_to "#{hearing.case.case_number}",case_path(hearing.case)%></td>
+	    		<td><%=change_format_to_long(hearing.hearing_date)%></td>
+	    		<td><%=change_format_to_long(hearing.next_hearing_date)%></td>
+	    		<td><%=find_user(hearing.attended_by).name%></td>
+	    		<td><%=link_to "#{hearing.case.client.name}",client_path(hearing.case.client) %></td>
+	    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', hearing %></td>
+	  	</tr>
+<%end%>
+	</table>
+<%end%>
+<%unless @cases.blank?%>
+<div class="show_heading">Cases yet to be submitted</div>
+	<table class='listing'>
+  		<tr>
+    			<th class="first">Client</th>
+    			<th>Lawyer</th>
+    			<th>File number</th>
+    			<th>Case number</th>
+    			<th>Date of submission</th>
+    			<th>Hearings</th>
+    			<th class="last">Show</th>
+  		</tr>
+	<% @cases.each do |c| %>
+  		<tr class="<%= cycle('odd', 'even')%>">
+    			<td class="first"><%=link_to "#{c.client.name}",client_path(c.client)%></td>
+    			<td><%=link_to "#{c.user.name}",user_path(c.user_id)%></td>
+			<td><%=h c.file_number %></td>
+    			<td><%=h c.case_number %></td>
+    			<td><%=change_format_to_long(c.last_date_for_submission)%></td>
+    			<td><%=c.hearings.count%></td>
+    			<td class="last"><%= link_to '<img src="/images/view.gif" title="Show" />', c %></td>
+  		</tr>
+ 	<% end %>
+ 	</table>
+<%end%>

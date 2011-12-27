@@ -1,0 +1,56 @@
+<div id="leftbox">
+<div class="show_heading">New Letter</div>
+<% form_for(@letter) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle formbg" width="99%" cellpadding="5px">  
+        <tr>
+          	<th width="25%">Select Saved Message</th>
+          	<td><%=select_tag 'letter_id',options_for_select(all_saved_letters(current_user)),:include_blank=>true%></td>
+         	<td>
+            	<%= image_tag("spinner.gif",
+              	:align => "absmiddle",
+		:border => 0,
+		:id => "spinner",
+                :style =>"display: none;") %><br />  
+         	</td> 
+        </tr>
+        <%= f.hidden_field :user_id,:value=>current_user.id%>
+	<tr>
+            	
+               	<%if params[:type].blank?%>
+                	<%= f.hidden_field :client_id,:value=>params[:client_id]%>
+           	<%else%>
+                 <th>Client</th>
+            	  <td>
+                	<%=f.select :client_id,firm_clients(current_user)%></td>
+           	<%end%>
+       </tr>
+        <tr>
+                <th><%= f.label :regarding %></th>
+                <td><%= f.text_field :regarding %></td>
+        </tr>
+        <tr>
+                <th><%= f.label :content %></th>
+             <td class="letter"><%= f.text_area :content,:rows=>5,:cols=>32%></td>
+
+                  
+
+        </tr>
+ </table>
+ <div class="button">
+      		<center><%= f.submit 'Print Letter' %></center>
+ </div>
+	<%= observe_field("letter_id", :frequency => 1,
+        :before => "jQuery('#spinner').show();",
+        :success => "jQuery('#spinner').hide();",
+        :url => {:action=>'render_saved_letters'}, 
+	:method => :get,
+        :with => "'letter_id=' + value")%>
+	<% end %>
+</div>
+<div class="sidebar">
+	<ul>
+		<li><%=link_to "Templates",saved_letters_path%></li>
+	</ul>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,33 @@
+<table class="tableheader" width="100%">
+	<tr>
+		<th width="85%">Listing lawyer accounts</th>
+		<td class="new_btn"><%= link_to 'New lawyer account', new_lawyer_account_path %></td>
+	</tr>
+</table>
+
+<table class="listing">
+   <%unless @lawyer_accounts.blank?%>
+	<tr>
+    		<th class="first">Lawyer</th>
+    		<th>Opening balance</th>
+    		<th>Current balance</th>
+    		<th class="last">Show</th>
+  	</tr>
+
+     <% @lawyer_accounts.each do |lawyer_account| %>
+  	<tr class="<%= cycle('odd', 'even')%>">
+    		<td class="first"><%=link_to "#{lawyer_account.user.name}",user_path(lawyer_account.user)%></td>
+    		<td>Rs.<%=h lawyer_account.opening_balance %></td>
+    		<td>Rs.<%=h lawyer_account.current_balance %></td>
+    		<td class="last"><%= link_to '<img src="/images/view.gif" title="Show"/>', lawyer_account %></td>
+  	</tr>
+    <% end %>
+        <tr><td><div id = "pg"><%=will_paginate @lawyer_accounts%></div></td></tr>
+   <%else%>
+       <tr><td>No accounts found</td></tr>
+   <%end%>
+</table>
+
+
+
+

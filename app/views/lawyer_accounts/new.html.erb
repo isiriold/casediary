@@ -1,0 +1,22 @@
+<div id="left_box">
+<% form_for(@lawyer_account) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle" width="100%">
+	<tr>
+    		<th><%= f.label :lawyer_id %></th>
+    		<td><%= f.select :user_id,firm_lawyers(current_user),:include_blank=>true%></td>
+	</tr>
+  	<tr>
+    		<th><%= f.label :opening_balance %></th>
+    		<td><%= f.text_field :opening_balance %></td>
+	</tr>
+  	<tr>
+    		<th><%= f.label :current_balance %></th>
+    		<td><%= f.text_field :current_balance,:value=>0,:readonly=>true %></td>
+  	</tr>
+</table>
+<div class="button">
+	<center><%= f.submit 'Create' %></center>
+</div>
+<% end %>
+</div>

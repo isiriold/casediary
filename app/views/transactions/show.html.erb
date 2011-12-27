@@ -1,0 +1,30 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left" cellpadding="5px" >
+	<tr>
+  		<th width="25%">Client</th><td><%=find_client_object(@transaction.id).name%></td>
+	</tr>
+	<tr>
+  		<th>Lawyer</th><td><%=@transaction.user.name%></td>
+	</tr>
+</table>
+<table class="show_right" cellpadding="5px" >
+	<tr>
+  		<th width="30%">Account</th><td><%=@transaction.account.account_name %></td>
+	</tr>
+	<tr>
+		<th>Amount</th><td>Rs.<%= @transaction.amount %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+	<div class="show_heading">Purpose</div>
+	<p><%=h @transaction.purpose %></p>
+</div>
+</div>
+<div class="sidebar">
+	<ul>
+		<br /><br />
+				<li class="edit"><%= link_to 'Back', transactions_path %></li>
+	</ul>
+</div>

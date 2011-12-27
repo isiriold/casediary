@@ -1,0 +1,38 @@
+<div id="left_box">
+<% form_for(@alert) do |f| %>
+  <%= f.error_messages %>
+
+  <%unless params[:client_id].blank?%>
+    <%= f.hidden_field :client_id,:value=>params[:client_id] %>
+  <%end%>
+
+  <%unless params[:case_id].blank?%>
+    <%= f.hidden_field :case_id,:value=>params[:case_id] %>
+  <%end%>
+
+  <%= f.hidden_field :user_id,:value=>current_user.id%>
+
+  <%unless params[:hearing_id].blank?%>
+    <%= f.hidden_field :hearing_id,:value=>params[:hearing_id] %>
+  <%end%>
+<table class="formstyle" width="100%">
+       <tr>
+            <th><%= f.label :alert_text %></th>
+            <td><%= f.text_area :alert_text ,:rows=>10,:cols=>35%></td>
+        </tr>
+        <tr>
+            <th><%= f.label :display_status %></th>
+            <td><%=radio_button_tag ('display_status','private', checked = false,:value=>"false")%>Me Only
+            &nbsp; &nbsp;<%=radio_button_tag ('display_status','public', 'checked = true',:value=>"true")%>All lawyers</td>
+        </tr>
+        <tr>
+            <th><%= f.label :display_till %></th>
+            <td><input class="alert[display_till]" id="cal" name = "alert[display_till]" value=""/></td>
+        </tr>
+</table>
+<div class="button">
+<center><%= f.submit 'Create' %></center>
+<% end %>
+</div>
+<!--><%= link_to 'Back', alerts_path %>-->
+</div>

@@ -1,0 +1,15 @@
+
+   <ul>
+      <li class= <%='current' if request.request_uri =~ /clients/%> > <%= link_to "Clients", clients_path%></li>
+      <li class= <%='current' if request.request_uri =~ /cases/%> > <%= link_to "Cases", cases_path%></li>
+      <li class= <%='current' if request.request_uri =~ /hearings/%> > <%= link_to "Hearings", hearings_path%></li>
+      <li class= <%='current' if request.request_uri =~ /users/%> > <%= link_to "Lawyers", users_path%></li>
+      <li class= <%='current' if request.request_uri =~ /communications/ or  request.request_uri =~ /letters/ or request.request_uri =~ /messages/ or request.request_uri =~ /emails/ %>> <%= link_to "Communications", letters_path%></li>
+      <li class= <%='current' if request.request_uri =~ /accounts/ or request.request_uri =~ /transaction/ or request.request_uri =~ /allocations/ or  request.request_uri =~ /invoices/%> > <%= link_to "Accounts", transactions_path%></li>
+      <li class= <%='current' if request.request_uri =~ /referehrs/%> > <%= link_to "Settings", ''%></li>
+      <li class= <%='current' if request.request_uri =~ /dashboard/%> > <%= link_to "Dashboard", dashboards_path%></li>
+    </ul>
+
+
+
+

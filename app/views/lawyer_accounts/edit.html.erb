@@ -1,0 +1,15 @@
+<div id="left_box">
+
+<% form_for(@lawyer_account) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle">
+	<tr>
+    		<th><%= f.label :opening_balance %></th>
+    		<td><%= f.text_field :opening_balance %></td>
+	</tr>
+</table>
+<div class="button">
+	<center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+</div>

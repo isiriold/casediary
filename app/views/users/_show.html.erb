@@ -1,0 +1,34 @@
+<table class="formstyle" width="100%">
+	<tr>
+		<th>Law Firm:</th><td><%=h @user.law_firm.firm_name%></td>
+	</tr>
+	<tr>
+  		<th>Name:</th><td><%=h @user.name%></td>
+	</tr>
+	<tr>
+  		<th>Address:</th><td><%=h @user.address %></td>
+	</tr>
+	<tr>
+  		<th>Phone Number:</th><td><%=h @user.phone_number %></td>
+	</tr>
+	<tr>
+  		<th>Mobile Number:</th><td><%=h @user.mobile_number %></td>
+	</tr>
+	<tr>
+  		<th>Email:</th><td><%=h @user.email %></td>
+	</tr>
+	<tr>
+  		<th>Role:</th><td><%=h @user.role %></td>
+	</tr>
+	<tr>
+  		<th>Username:</th><td><%=h @user.username %></td>
+	</tr>
+	<tr>
+  		<th>Password:</th><td><%=h @user.password %></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td><%= link_to 'Edit', edit_user_path(@user) %></td>
+	</tr>
+</table>
+

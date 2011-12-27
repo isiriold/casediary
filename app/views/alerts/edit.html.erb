@@ -1,0 +1,26 @@
+<div id="left_box">
+
+<% form_for(@alert) do |f| %>
+  <%= f.error_messages %>
+<table class="formstyle" width="100%">
+  		<tr>
+            <th><%= f.label :alert_text %></th>
+            <td><%= f.text_area :alert_text ,:rows=>10,:cols=>35%></td>
+      </tr>
+
+      <tr>
+            <th><%= f.label :display_status %></th>
+            <td><%=radio_button_tag ('display_status','private', checked = false,:value=>"false")%>Private
+    &nbsp; &nbsp;<%=radio_button_tag ('display_status','public', 'checked = true',:value=>"true")%>Public</td>
+      </tr>
+      <tr>
+            <th><%= f.label :display_till %></th>
+            <td><%= f.date_select :display_till %></td>
+      </tr>
+</table>
+<div class="button">
+<center><%= f.submit 'Update' %></center>
+</div>
+<% end %>
+
+</div>

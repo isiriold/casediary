@@ -1,0 +1,13 @@
+
+<div id="sub-menu">
+  <ul>
+   <%if current_user.role == "Admin"%>
+     <li class= <%='current' if (request.request_uri =~ /allocations/)%> ><%= link_to 'Allocations', allocations_path %></li> |
+     <li class= <%='current' if (request.request_uri =~ /lawyer_accounts/ )%> ><%= link_to 'Lawyer accounts', lawyer_accounts_path %></li> |
+      <li class= <%='current' if (request.request_uri =~ /accounts/)%> ><%=link_to "Accounts",accounts_path%> </li> |
+    <%end%>
+   
+    <li class= <%='current' if (request.request_uri =~ /invoice/)%> ><%=link_to "Invoice",invoices_path%></li>
+  </ul>
+</div>
+

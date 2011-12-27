@@ -1,0 +1,25 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left">
+	<tr>
+		<th width="35%">User</th><td><%=@message.user.name%></td>
+	</tr>
+	<tr>
+		<th>Client</th><td><%=find_client(@message.client_id)%></td>
+	</tr>
+	<tr>
+  		<th>Regarding</th><td><%=h @message.regarding %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+    	<div class="show_heading">Content</div>
+	<p><%=h @message.message_body %></p>
+</div>
+</div>
+<div class="sidebar">
+<ul>
+	<br /><br />
+	<li class="edit"><%= link_to 'Back', messages_path %></li>
+</ul>
+</div>

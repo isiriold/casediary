@@ -1,0 +1,14 @@
+<% form_for @search,:method => :get, :id => "search_form" do |f| %>
+  <table class="search">
+    <tr>
+        <th><%=label_tag 'Name:'%></th>
+    
+        <% f.fields_for @search.conditions do |client| %>
+          <td><%= client.text_field :name_like %></td>
+          <td class="btn"><%= f.submit "Search" %></td>
+        <% end %>
+    </tr>
+  </table>     
+ <% end %>
+
+

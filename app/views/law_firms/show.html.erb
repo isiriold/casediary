@@ -1,0 +1,38 @@
+<div id="left_box">
+	<div class="box_heading"><h3>Law Firm Details</h3></div>
+	<table class="formstyle" width="100%">	
+		<tr>
+			<th>Firm name:</th><td><%=h @law_firm.firm_name %></td>
+		</tr>
+		<tr>
+			<th>Address:</th><td><%=h @law_firm.address %></td>
+		</tr>
+		<tr>
+			<th>Contact person:</th><td><%=h @law_firm.contact_person %></td>
+		</tr>
+		<tr>
+			<th>Phone number:</th><td><%=h @law_firm.phone_number %></td>
+		</tr>
+		<tr>
+			<th>Mobile:</th><td> <%=h @law_firm.mobile %></td>
+		</tr>
+		<tr>
+			<th>Mail:</th><td><%=h @law_firm.mail %></td>
+		</tr>
+		<tr>
+			<th>Website:</th><td><%=h @law_firm.website %></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><%= link_to 'Edit', edit_law_firm_path(@law_firm) %></td>
+		</tr>
+	</table>
+</div>
+
+<div id="right_box">
+	<div class="box_heading"><h3>Lawyer Details</h3></div>
+    		<%=render :partial=>"/users/show"%>
+	</div>
+</div>
+
+<div class="clear-div"></div>

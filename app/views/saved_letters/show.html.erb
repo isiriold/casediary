@@ -1,0 +1,23 @@
+<div id="leftbox">
+<br /><br />
+<table class="show_left">
+	<tr>
+		<th width="20%">User</th><td><%=h @saved_letter.user.name %></td>
+	</tr>
+	<tr>
+		<th>Regarding</th><td><%=h @saved_letter.regarding %></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<div class="show">
+	<div class="show_heading">Content</div>
+  	<p><%=h @saved_letter.content %></p>
+</div>
+</div>
+<div class="sidebar">
+<ul>
+	<br /><br />
+	<li class="edit"><%= link_to 'Edit', edit_saved_letter_path(@saved_letter) %></li>
+	<li class="edit"><%= link_to 'Back', saved_letters_path %></li>
+</ul>
+</div>

@@ -1,0 +1,46 @@
+<div id="left_box">
+<% form_for(@transaction) do |f| %>
+<%= f.error_messages %>
+<table class="formstyle" width="100%">
+	<tr>
+    		<th><%= f.label :client%></th>
+    		<td><%= select_tag 'client_id',options_for_select(firm_clients(current_user))%></td>
+ 	</tr>
+
+    	<%= f.hidden_field :user_id,:value=>current_user.id%>
+      
+	<tr>
+    		<th><%= f.label :account_id %></th>
+    		<td><%= f.select :account_id,firm_expence_accounts(current_user),:include_blank=>true%></td>
+	</tr>
+ 
+        <%if current_user.role=="Admin"%>
+           <tr>
+    		<th><%= f.label :spent_by %></th>
+    		<td><%= f.select :spender_id,firm_lawyer_accounts(current_user),:include_blank=>true%></td>
+	   </tr>
+        <%else%>
+           <tr>
+    		<th><%= f.label :spent_by %></th>
+    		<td><%= f.text_field :spender_id,:value=>current_user.name,:readonly=>true%></td>
+                <%= f.hidden_field :spender_id,:value=>current_user.id%>
+	   </tr>
+        <%end%>
+
+  	<tr>
+    		<th><%= f.label :amount %></th>
+    		<td><%= f.text_field :amount %></td>
+  	</tr>
+
+  	<tr>
+    		<th><%= f.label :purpose %></th>
+    		<td><%= f.text_area :purpose,:rows=>5,:cols=>34 %></td>
+  	</tr>
+</table>
+<div class="button">
+      		<center><%= f.submit 'Create' %></center>
+</div>
+<% end %>
+</div>
+
+
